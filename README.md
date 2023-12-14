@@ -1,2 +1,2 @@
 This is my first project to create a django project quality analysis dashboard. The code begins with the login and sign up of my first project in the views.py data_parameters folder. The sign up data input process is stored in MySQL and Django Admin. The dashboard created is not the final result.
-![Screenshot 2023-12-14 091833](https://github.com/riodwipratama/django-login-signup-rio/assets/134585385/0a9641a1-f428-4460-afa7-0b52eaf7deca)
+
