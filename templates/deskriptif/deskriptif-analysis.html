@@ -1,0 +1,315 @@
+
+{% load static %}
+{% include "header.html" %}
+
+<aside id="sidebar" class="sidebar">
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'index' %}">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Tabel</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="{% url 'data-tabel' %}">
+            <i class="bi bi-circle"></i><span>Data Table</span>
+          </a>
+        </li>
+      </ul>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-clipboard-data"></i><span>Data Entry</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'csv_file' %}">
+              <i class="bi bi-circle"></i><span>Upload File CSV</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="{% url 'deskriptif' %}"  class="active">
+          <i class="bi bi-bar-chart-line"></i>
+          <span>Deskriptif</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+          <i class="ri-bar-chart-grouped-line"></i>
+          <span>Prediktif</span>
+        </a>
+      </li><!-- End Tables Nav -->
+    <!-- End Components Nav -->
+  </ul>  
+</aside>   
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Deskriptif Analysis</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+          <li class="breadcrumb-item">Tabel</li>
+          <li class="breadcrumb-item active">Deskriptif</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+
+    <section class="section dashboard">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="row">
+  
+            <!-- Sales Card -->
+            <div class="col-md-6">
+              <div class="card info-card sales-card">
+  
+                <div class="card-body">
+                  <h5 class="card-title">Baris <span>| Total</span></h5>
+  
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-cart"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{baris}} Baris data</h6>
+                      <!-- <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
+  
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+            </div><!-- End Sales Card -->
+  
+            <!-- Revenue Card -->
+            <div class="col-md-6">
+              <div class="card info-card revenue-card">
+  
+                <div class="card-body">
+                  <h5 class="card-title">Kolom <span>| Total</span></h5>
+  
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{kolom}} Kolom data</h6>
+                      <!-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
+  
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+            </div><!-- End Revenue Card -->
+  
+            <!-- Customers Card -->
+            <div class="col-md-6">
+  
+              <div class="card info-card customers-card">
+  
+                <div class="card-body">
+                  <h5 class="card-title">Duplikasi <span>| Total</span></h5>
+  
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{duplikasi}} Duplikasi data</h6>
+                      <span class="text-danger small pt-1 fw-bold">0%</span> <span class="text-muted small pt-2 ps-1">detected</span>
+  
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+  
+            </div><!-- End Customers Card -->
+            <!-- Revenue Card -->
+            <div class=" col-md-6">
+              <div class="card info-card revenue-card">
+  
+                <div class="card-body">
+                  <h5 class="card-title">Missing <span>| Total</span></h5>
+  
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{missing}} Missing data</h6>
+                      <span class="text-success small pt-1 fw-bold">{{miss_kelembaban}}</span> <span class="text-muted small pt-2 ps-1">detected</span>
+  
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+            </div><!-- End Revenue Card -->
+
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Data Understanding </span></h5>
+                  <br><img src="{% static 'assets/img/dataframe.png'%}" class="center">
+                  <style>
+                    .center {
+                      display: block;
+                      margin-left: auto;
+                      margin-right: auto;
+                      width: 90%;
+                    }
+                    .center-side {
+                      display: block;
+                      margin-left: auto;
+                      margin-right: auto;
+                      width: 100%;
+                    }
+                  </style>
+                  <br>
+                  <h5 class="card-title">Data Understanding <span>/ Describe Data </span></h5>
+                  <br><img src="{% static 'assets/img/describe.png'%}" class="center"> <br>
+                  <!-- <h5 class="card-title">Exploratory Data Analysis <span>/ Pearson Correlation</span></h5>
+                  <img src="{% static 'assets/img/Pearson.png'%}" class="center"></li> -->
+                  <h5 class="card-title">Exploratory Data Analysis <span>/ Seaborn Scatter</span></h5>
+                  <img src="{% static 'assets/img/scatter.png'%}" class="center"></li><br>
+                  <h5 class="card-title">Exploratory Data Analysis <span>/ Pearson Correlation</span></h5>
+                  <img src="{% static 'assets/img/PearsonCorr.png'%}" class="center"></li>
+                  <h5 class="card-title">Exploratory Data Analysis <span>/ Hotelling T2</span></h5>
+                  <img src="{% static 'assets/img/hotelling.png'%}" class="center-side"></li>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <!-- Recent Activity -->
+          <div class="card">
+            
+
+            <div class="card-body">
+              <h5 class="card-title">Missing Value <span>| Details</span></h5>
+
+              <div class="activity">
+
+                <div class="activity-item d-flex">
+                  <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                  &nbsp ID Product :
+                  <div class="activity-content">
+                    &nbsp <a href="#" class="fw-bold text-dark">{{miss_id}}</a> Missing value
+                  </div>
+                </div><!-- End activity item-->
+
+                <div class="activity-item d-flex">
+                  <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                  &nbsp Units Name :
+                  <div class="activity-content">
+                    &nbsp <a href="#" class="fw-bold text-dark">{{miss_unit}}</a> Missing value
+                  </div>
+                </div><!-- End activity item-->
+
+                <div class="activity-item d-flex">
+                  <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                  &nbsp Kelembaban :
+                  <div class="activity-content">
+                    &nbsp <a href="#" class="fw-bold text-dark">{{miss_kelembaban}}</a> Missing value
+                  </div>
+                </div><!-- End activity item-->
+
+                <div class="activity-item d-flex">
+                  <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                  &nbsp Tekanan :
+                  <div class="activity-content">
+                    &nbsp <a href="#" class="fw-bold text-dark">{{miss_tekanan}}</a> Missing value
+                  </div>
+                </div><!-- End activity item-->
+
+                <div class="activity-item d-flex">
+                  <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                  &nbsp Waktu :
+                  <div class="activity-content">
+                    &nbsp <a href="#" class="fw-bold text-dark">{{miss_waktu}}</a> Missing value
+                  </div>
+                </div><!-- End activity item-->
+
+                <div class="activity-item d-flex">
+                  <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                  &nbsp Suhu :
+                  <div class="activity-content">
+                    &nbsp <a href="#" class="fw-bold text-dark">{{miss_suhu}}</a> Missing value
+                  </div>
+                </div><!-- End activity item-->
+
+                <div class="activity-item d-flex">
+                  <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                  &nbsp Sudut : 
+                  <div class="activity-content">
+                    &nbsp <a href="#" class="fw-bold text-dark">{{miss_sudut}}</a> Missing value
+                  </div>
+                </div><!-- End activity item-->
+
+          </div>
+
+        </div><!-- End Recent Activity -->
+        
+      </div>
+      <!-- Data Out of Control -->
+      <div class="card">
+        
+
+        <div class="card-body pb-0">
+          <h5 class="card-title">Data Out of Control <span>| Total</span></h5>    
+          <div class="outer-wrapper">
+            <div class="table-wrapper">
+              
+              <table border="1" class="table datatable"> <thead> <tr style="text-align: right;"> <th>Index</th> <th>qi</th> </tr> </thead> <tbody> <tr> <th>30</th> <td>18.364806</td> </tr> <tr> <th>34</th> <td>19.254438</td> </tr> <tr> <th>78</th> <td>20.820009</td> </tr> <tr> <th>89</th> <td>18.690137</td> </tr> <tr> <th>91</th> <td>17.741875</td> </tr> <tr> <th>173</th> <td>0.004190</td> </tr> <tr> <th>176</th> <td>0.055515</td> </tr> <tr> <th>187</th> <td>0.047934</td> </tr> <tr> <th>191</th> <td>0.033007</td> </tr> <tr> <th>204</th> <td>0.024780</td> </tr> <tr> <th>212</th> <td>0.002457</td> </tr> <tr> <th>213</th> <td>0.017929</td> </tr> <tr> <th>215</th> <td>0.012499</td> </tr> <tr> <th>217</th> <td>0.012499</td> </tr> <tr> <th>235</th> <td>0.085644</td> </tr> <tr> <th>238</th> <td>0.014851</td> </tr> <tr> <th>243</th> <td>0.020132</td> </tr> <tr> <th>249</th> <td>0.024587</td> </tr> <tr> <th>251</th> <td>0.006961</td> </tr> <tr> <th>255</th> <td>0.005735</td> </tr> <tr> <th>352</th> <td>0.056356</td> </tr> <tr> <th>374</th> <td>0.093478</td> </tr> <tr> <th>498</th> <td>18.174134</td> </tr> <tr> <th>505</th> <td>24.042283</td> </tr> <tr> <th>508</th> <td>0.048158</td> </tr> <tr> <th>590</th> <td>0.013413</td> </tr> <tr> <th>595</th> <td>0.077556</td> </tr> <tr> <th>620</th> <td>0.063296</td> </tr> <tr> <th>693</th> <td>0.068676</td> </tr> <tr> <th>793</th> <td>0.066383</td> </tr> </tbody> </table>
+                
+            </div>     
+          </div>
+          
+
+        </div>
+
+      </div><!-- End Data Out of Control -->
+    </div>
+    
+    <section class="section">
+      
+        <div class="row">
+          <div class="col-lg-12">
+            
+            <!-- <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Deskriptif Analisis <span>/ Data Understanding</span></h5>
+                <li>Pearson Correlation: <br><img src="{% static 'assets/img/Pearson.png'%}"></li>
+                
+              </div>
+            </div> -->
+                <!-- End Table with stripped rows -->
+  
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </section>
+    <style>
+      
+    </style>
+  </main><!-- End #main -->
+{% include "footer.html" %}
+{% include "script.html" %}

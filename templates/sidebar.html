@@ -1,0 +1,50 @@
+{% load static %}
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="{% url 'index' %}">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Tabel</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'data-tabel' %}">
+              <i class="bi bi-circle"></i><span>Data Table</span>
+            </a>
+          </li>
+        </ul>
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-clipboard-data"></i><span>Data Entry</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="{% url 'csv_file' %}">
+                <i class="bi bi-circle"></i><span>Upload File CSV</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{% url 'deskriptif' %}">
+            <i class="bi bi-bar-chart-line"></i>
+            <span>Deskriptif</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#">
+            <i class="ri-bar-chart-grouped-line"></i>
+            <span>Prediktif</span>
+          </a>
+        </li><!-- End Tables Nav -->
+      <!-- End Components Nav -->
+    </ul>  
+  </aside>   

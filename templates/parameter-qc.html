@@ -1,0 +1,105 @@
+{% load static %}
+{% include "header.html" %}
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'index' %}">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Tabel</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'data-tabel' %}">
+              <i class="bi bi-circle"></i><span>Data Table</span>
+            </a>
+          </li>
+        </ul>
+        <li class="nav-item">
+          <a class="nav-link " data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-clipboard-data"></i><span>Data Entry</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="{% url 'csv_file' %}" class="active">
+                <i class="bi bi-circle"></i><span>Upload File CSV</span>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{% url 'deskriptif' %}">
+            <i class="bi bi-bar-chart-line"></i>
+            <span>Deskriptif</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#">
+            <i class="ri-bar-chart-grouped-line"></i>
+            <span>Prediktif</span>
+          </a>
+        </li>
+        
+      </li>
+      <!-- End Components Nav -->
+    </ul>
+  </aside>
+
+  <main id="main" class="main">
+    <div class="pt-2">
+      {% include "pop-up/pop-up-register.html" %}
+    </div>
+    <div class="pagetitle">
+      <h1>Parameter QC</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+          <li class="breadcrumb-item">Data Entry</li>
+          <li class="breadcrumb-item active">Parameter QC</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      {% csrf_token %}
+        {% if error_message %}
+          <p class="bg-danger p-d ml-b">{{ error_message }}</p>
+        {% endif %}
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">File Upload</h5>
+              <div class="row mb-3">
+
+                <form action="" method="POST" class="ui form" enctype="multipart/form-data" novalidate>
+                  {% csrf_token %}
+                  {% for field in form %}
+                    <div class="form-control">
+                      {{ form }}
+                    </div>
+                  {% endfor %}
+                  <br>
+                  <button type= "submit" class="btn btn-primary">Confirm</button>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+</main><!-- End #main -->
+{% include "footer.html" %}
+{% include "script.html" %}
